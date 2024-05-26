@@ -11,8 +11,7 @@ int main(){
     case(4): printf("laba bez dop zadania 1, s dop zadaniem 2\n");scanf("%d", &p);if(p==1){ lab4();break;}else{lab4_1(); break;}
     case(5): printf("laba bez dop zadania 1, s dop zadaniem 2\n");scanf("%d", &p);if(p==1){ lab5();break;}else{lab5_1(); break;}
     case(6): printf("laba bez dop zadania 1, s dop zadaniem 2\n");scanf("%d", &p);if(p==1){ lab6();break;}else{lab6_1(); break;}
-    case(7): lab7();break;
-        }
+    case(7): lab7();break;}
         printf("\n");
         system("pause");
 return 0;

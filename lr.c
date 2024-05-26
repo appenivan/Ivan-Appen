@@ -1,5 +1,25 @@
 #include"lr.h"
 #include<stdio.h>
+
+// Функция для обмена пар битов
+long swap_adjacent_bits(long num) {
+    // Создаем маски для четных и нечетных битов
+    long even_mask = 0xAAAAAAAAAAAAAAAA; // 10101010...
+    long odd_mask  = 0x555555555555555; // 01010101...
+
+    // Извлекаем четные и нечетные биты
+    long even_bits = num & even_mask;
+    long odd_bits = num & odd_mask;
+
+    // Сдвигаем четные биты вправо и нечетные влево
+    even_bits >>= 1;
+    odd_bits <<= 1;
+
+    // Объединяем сдвинутые биты
+    return (even_bits | odd_bits);
+}
+
+
 int lab1(){
 float L, v1, v2, t; // искомое расстояние между пунктами, скорость машины, скорость мотоцикла, время встречи
 printf ("v1=");// вывод на экран подсказки: v1=
@@ -211,6 +231,29 @@ int lab4_1()
     return 0;
 }
 
+// Функция для обмена местами цифр числа с использованием побитовых операций
+long svap_adjacent_bits(long num) {
+    long result = 0;
+    long place = 1; // Позиция для формирования нового числа
+
+    while (num > 0) {
+        // Извлекаем последние две цифры
+        int digit1 = num % 10;
+        num /= 10;
+        int digit2 = num % 10;
+        num /= 10;
+
+        // Обмениваем цифры местами и добавляем к результату
+        result += digit1 * place * 10;
+        result += digit2 * place;
+
+        // Увеличиваем позицию в 100 раз (две цифры)
+        place *= 100;
+    }
+
+    return result;
+}
+
 
 int lab5()
 {
@@ -272,11 +315,9 @@ int lab5_1()
 
 int lab6()
 {
-    int N, K;
-    printf("Enter the size of the array (N K): ");
-    scanf("%d %d", &N, &K);
+    int N=3, K=3;
     int array[N][K];
-    printf("Enter the elements of the array: \n");
+    printf("Enter the elements of the array 3x3: \n");
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < K; j++) {
             scanf("%d", &array[i][j]);
@@ -350,20 +391,18 @@ return 0;
 }
 
 
-int lab7()
-{
-    int n;
-    scanf("%d", &n);
-    int k = 0;
-    int m = 1;
-   while (n > 9) {
-        int a = n % 10;
-        int b = (n / 10) % 10;
-        k += m * (10 * a + b);
-        m *= 100;
-        n /= 100;
-    }
-    int swap=k + m * n;
-    printf("%d", swap);
+int lab7() {
+    long num;
+
+
+    printf("Vvedite chislo tipa long: ");
+    scanf("%ld", &num);
+
+    long swapped_num = svap_adjacent_bits(num);
+
+    printf("Result: %ld\n", swapped_num);
+
     return 0;
 }
+
+
