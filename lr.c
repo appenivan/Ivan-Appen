@@ -231,29 +231,6 @@ int lab4_1()
     return 0;
 }
 
-// Функция для обмена местами цифр числа с использованием побитовых операций
-long svap_adjacent_bits(long num) {
-    long result = 0;
-    long place = 1; // Позиция для формирования нового числа
-
-    while (num > 0) {
-        // Извлекаем последние две цифры
-        int digit1 = num % 10;
-        num /= 10;
-        int digit2 = num % 10;
-        num /= 10;
-
-        // Обмениваем цифры местами и добавляем к результату
-        result += digit1 * place * 10;
-        result += digit2 * place;
-
-        // Увеличиваем позицию в 100 раз (две цифры)
-        place *= 100;
-    }
-
-    return result;
-}
-
 
 int lab5()
 {
@@ -398,7 +375,7 @@ int lab7() {
     printf("Vvedite chislo tipa long: ");
     scanf("%ld", &num);
 
-    long swapped_num = svap_adjacent_bits(num);
+    long swapped_num = swap_adjacent_bits(num);
 
     printf("Result: %ld\n", swapped_num);
 
